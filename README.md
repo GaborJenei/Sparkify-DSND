@@ -10,11 +10,33 @@ Every interaction with the service (play a song, like, login, logout, upgrade, e
 The overall goal of this project is to try to identify users before they leave so they can be offered different incentives increasing the chance of not cancelling the service.
 
 ### Contents:
+
 #### Project Overview, Definition
 Student provides a high-level overview of the project. Background information such as the problem domain, the project origin, and related data sets or input data is provided.
 
+Sparkify music streaming service has two subscription tiers, a paid level with no ads and free-tier with ads playing between songs. It is detrimental to Sparkify's bottom line to loose users by complete cancellation.
+
+The primary objective of this project is to try to identify users cancelling the service.
+
+The dataset for this is an approx 12GB log file holding all user interactions in JSON format.
+
 #### Problem Statement
 The problem which needs to be solved is clearly defined. A strategy for solving the problem, including discussion of the expected solution, has been made.
+
+The way Sparkify generates revenue can be grouped into two main categories:
+ 1. Users pay a monthly fee for the Upgraded subscription tier, where users will have no advertisements
+ 2. Users use the free subscription tier paying no monthly fee, however they will have advertisements placed in-between songs. In this case advertising partners will pay a fee for playing their ad to our users.
+
+ If a user completely leaves Sparkify by cancelling the service, then none of the two monetisation methods will apply and total turnover of Sparkify will be less.
+
+ Based on the data provided, 22% percent of all users cancels the service, and as an approximation we can assume that this means the same proportion reduction in the turnover.
+
+ Sparkify is eager to be able to identify users likely to churn before they leave.
+ They will be able to offer them perks in hope of preventing them from leaving and by this increasing the revenue and profit of the company.
+
+#### Workspace environment
+For this project I used an Azure Databricks workspace.
+Detailed guide on how to set-up a workspace and create compute clusters can be found (here)[https://docs.microsoft.com/en-us/learn/modules/get-started-azure-databricks/]
 
 #### Analysis
 ##### Data exploration
