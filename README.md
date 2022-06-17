@@ -36,7 +36,7 @@ The way Sparkify generates revenue can be grouped into two main categories:
 
 #### Workspace environment
 For this project I used an Azure Databricks workspace.
-Detailed guide on how to set-up a workspace and create compute clusters can be found (here)[https://docs.microsoft.com/en-us/learn/modules/get-started-azure-databricks/]
+Detailed guide on how to set-up a workspace and create compute clusters can be found [here](https://docs.microsoft.com/en-us/learn/modules/get-started-azure-databricks/)
 
 #### Analysis
 ##### Data exploration
