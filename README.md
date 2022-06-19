@@ -63,7 +63,9 @@ I dropped all records with no user id. These are mainly interactions before logg
 Churn as an attribute isn't explicitly defined in the dataset. Everyone who visited the 'Cancellation confirmation' page was considered to be a churning user.
 
 ## Data exploration
-Add No churning
+There are 22,277 users left in the clean dataset.
+From this, 5,003 cancelled the service completely, which is 22.5% churn rate. 
+![Number of days before churning](https://github.com/GaborJenei/Sparkify-DSND/blob/main/eda_visuals/01_churnUserCount.jpg)
 
 By looking at the number of days between registration and last activity, it seems that churning customers leave early on.
 Most leaving user leaves in the first three weeks.
