@@ -32,6 +32,9 @@ They will be able to offer them perks in hope of preventing them from leaving an
 
 The expected solution is a binary classification machine learning model. This model can be used to continuously predict if a user is likely to churn or not by using the new log data and the trained model for inference.
 
+The performance of the model is going to be measured with the F1-score, which is the harmonic mean of precision and recall. This metric is useful to compare classifiers.
+
+
 #### Workspace environment
 For this project I used an Azure Databricks workspace.
 Detailed guide on how to set-up a workspace and create compute clusters can be found [here](https://docs.microsoft.com/en-us/learn/modules/get-started-azure-databricks/)
@@ -46,8 +49,13 @@ All of the code in the notebook uses the pyspark API and runs on any Spark clust
 
 __Pricing - Be Careful! - Azure will charge you for these resources__
 
+#### The dataset
+The dataset is a 12GB JSON file holding user log data and was provided through an S3 bucket.
+The file is not provided in this repository due to its mere size.
+
 #### Analysis
 ##### Data exploration
+
 ##### Data cleaning
 ##### Feature extraction
 ##### Modeling
