@@ -138,8 +138,8 @@ The dummy classifier demonstrates 78% accuracy and a 0.68 F1 score on the traini
 
 ### Hyper parameter tuning
 
-![Churn rate by US State](https://github.com/GaborJenei/Sparkify-DSND/blob/main/eda_visuals/12_Feature Importance.jpg)
-![Churn rate by US State](https://github.com/GaborJenei/Sparkify-DSND/blob/main/eda_visuals/13_Feature Importance_CumSum.jpg)
+![Churn rate by US State](https://github.com/GaborJenei/Sparkify-DSND/blob/main/eda_visuals/12_Feature%20Importance.jpg)
+![Churn rate by US State](https://github.com/GaborJenei/Sparkify-DSND/blob/main/eda_visuals/13_Feature%20Importance_CumSum.jpg)
 
 #### Conclusion
 
