@@ -52,7 +52,7 @@ The full dataset I used has 26,259,199 rows and 18 columns. Each row represents 
  - `userId`: string, the unique id of a single user,
  - `sessionId`: long, unique id of a single session,
  - `gender`: string, gender of the user (M or F),
- - itemInSession: long, the cumulative number of items/pages viewed by the user in the session,
+ - `itemInSession`: long, the cumulative number of items/pages viewed by the user in the session,
  - `length`: double, length of a song item viewed,
  - `level`: string, level of subscription (paid or free),
  - `location`: string, location of the session with city and state
