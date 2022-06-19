@@ -6,6 +6,8 @@ Users can upgrade, downgrade or cancel anytime, so it's crucial they like the se
 Every interaction with the service (play a song, like, login, logout, upgrade, etc.) is recorded, hoping that this dataset will help us gain some insights.
 The overall goal of this project is to try to identify users before they leave so they can be offered different incentives increasing the chance of not cancelling the service.
 
+A blog post of this project can be found on [medium](https://gaborjenei.medium.com/predicting-churn-with-spark-7e212d65cfb1).
+
 # Project Background
 ## Project Overview, Definition
 Sparkify music streaming service has two subscription tiers, a paid level with no ads and a free tier with ads playing between songs. Therefore, it is detrimental to Sparkify's bottom line to lose users by complete cancellation.
