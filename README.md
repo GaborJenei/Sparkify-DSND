@@ -64,26 +64,26 @@ Churn as an attribute isn't explicitly defined in the dataset. Everyone who visi
 
 ## Data exploration
 There are 22,277 users left in the clean dataset.
-From this, 5,003 cancelled the service completely, which is 22.5% churn rate. 
+From this, 5,003 cancelled the service completely, which is 22.5% churn rate.   
 ![Number of days before churning](https://github.com/GaborJenei/Sparkify-DSND/blob/main/eda_visuals/01_churnUserCount.jpg)
 
-By looking at the number of days between registration and last activity, it seems that churning customers leave early on.
-Most leaving user leaves in the first three weeks.
-![Number of days before churning](https://github.com/GaborJenei/Sparkify-DSND/blob/main/eda_visuals/02_NoDays.png)
+By looking at the number of days between registration and last activity, it seems that churning customers leave early on.  
+Most leaving user leaves in the first three weeks.  
+![Number of days before churning](https://github.com/GaborJenei/Sparkify-DSND/blob/main/eda_visuals/02_NoDays.jpg)
 
-There's no observable difference in the session starting hour proportions across the day comparing sessions when the user cancels the service against sessions with no cancellation.
-![Proportion of start hour of sessions by churning](https://github.com/GaborJenei/Sparkify-DSND/blob/main/eda_visuals/03_SessionStartHour.png)
+There's no observable difference in the session starting hour proportions across the day comparing sessions when the user cancels the service against sessions with no cancellation.  
+![Proportion of start hour of sessions by churning](https://github.com/GaborJenei/Sparkify-DSND/blob/main/eda_visuals/03_SessionStartHour.jpg)
 
-The figure below shows the distribution of the number of sessions before cancellation. This plot also shows that most users leave soon after sign up.
-Looking at the cumulative plot, we can see that 80% of the leaving users cancle the service within the first 20 sessions.
-![Distribution of the number of sessions before churning](https://github.com/GaborJenei/Sparkify-DSND/blob/main/eda_visuals/04_NoSessions.png)
-![Distribution of the number of sessions before churning](https://github.com/GaborJenei/Sparkify-DSND/blob/main/eda_visuals/04_NoSessionsECDF.png)
+The figure below shows the distribution of the number of sessions before cancellation. This plot also shows that most users leave soon after sign up.  
+Looking at the cumulative plot, we can see that 80% of the leaving users cancle the service within the first 20 sessions.  
+![Distribution of the number of sessions before churning](https://github.com/GaborJenei/Sparkify-DSND/blob/main/eda_visuals/04_NoSessions.jpg)
+![Distribution of the number of sessions before churning](https://github.com/GaborJenei/Sparkify-DSND/blob/main/eda_visuals/04_NoSessionsECDF.jpg)
 
 There is no significant difference in churn rate across the genders.
-![Churning and non-churning user numbers by gender](https://github.com/GaborJenei/Sparkify-DSND/blob/main/eda_visuals/05_Gender.png)
+![Churning and non-churning user numbers by gender](https://github.com/GaborJenei/Sparkify-DSND/blob/main/eda_visuals/05_Gender.jpg)
 
 A bar chart of the number of cancelling and non-cancelling users can be seen below.
-![Number of churning and non-churning users by US State](https://github.com/GaborJenei/Sparkify-DSND/blob/main/eda_visuals/06_State.png)
+![Number of churning and non-churning users by US State](https://github.com/GaborJenei/Sparkify-DSND/blob/main/eda_visuals/06_State.jpg)
 
 A bar plot isn't very helpful to see geographic patterns, so I created some thematic maps.
 The below figure shows the number of users by state. California has a really high number of users.
@@ -94,8 +94,8 @@ North Dakota and Montana are significantly below, whilst Soth Dakota and Maine h
 ![Churn rate by US State](https://github.com/GaborJenei/Sparkify-DSND/blob/main/eda_visuals/08_ChurnRate.png)
 
 The below two plots show the user page visits. The first one shows the average page visits within a session, the second the average page visits during user lifetime.
-![Churn rate by US State](https://github.com/GaborJenei/Sparkify-DSND/blob/main/eda_visuals/09_pagebysession.png)
-![Churn rate by US State](https://github.com/GaborJenei/Sparkify-DSND/blob/main/eda_visuals/10_page_byuser.png)
+![Churn rate by US State](https://github.com/GaborJenei/Sparkify-DSND/blob/main/eda_visuals/09_pagebysession.jpg)
+![Churn rate by US State](https://github.com/GaborJenei/Sparkify-DSND/blob/main/eda_visuals/10_page_byuser.jpg)
 
 ## Feature extraction
 for input features for modelling I selected a number of session level aggregates combined with user level aggregates.
@@ -133,7 +133,13 @@ I trained `LogisticRegression`, `RandomForestClassifier`, `GBTClassifier`, and `
 
 The dummy classifier demonstrates 78% accuracy and a 0.68 F1 score on the training data. The performance on the test set 77% accuracy and a 0.66 F1 score.
 
+
+![Churn rate by US State](https://github.com/GaborJenei/Sparkify-DSND/blob/main/eda_visuals/11_ModelF1.jpg)
+
 ### Hyper parameter tuning
+
+![Churn rate by US State](https://github.com/GaborJenei/Sparkify-DSND/blob/main/eda_visuals/12_Feature Importance.jpg)
+![Churn rate by US State](https://github.com/GaborJenei/Sparkify-DSND/blob/main/eda_visuals/13_Feature Importance_CumSum.jpg)
 
 #### Conclusion
 
