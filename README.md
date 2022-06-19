@@ -132,20 +132,50 @@ The series of the above transformations of scaling, encoding and combining these
 I trained `LogisticRegression`, `RandomForestClassifier`, `GBTClassifier`, and `LinearSVC` models for this binary classification problem with their default settings. To set a baseline to compare all these (and not just to each other), I also created a dummy model predicting only 0 (not churning). Evaluating the dummy model puts the metrics of the classification models into context, particularly useful when there is a class imbalance.
 
 The dummy classifier demonstrates 78% accuracy and a 0.68 F1 score on the training data. The performance on the test set 77% accuracy and a 0.66 F1 score.
-
+The trained classifiers perform significantly better than the dummy classifier (considering F1 score on test data):
+- `GBTClassifier` 88.2%,
+- `LogisticRegression` 84.3%,
+- `LinearSVC` 84.2%,
+- `RandomForestClassifier` 72.3%.
 
 ![Churn rate by US State](https://github.com/GaborJenei/Sparkify-DSND/blob/main/eda_visuals/11_ModelF1.jpg)
 
 ### Hyper parameter tuning
 
+The Gradient Boosted Tree Classifier performed the best, so I chose this for further hyper-parameter tuning. During the hyper-parameter tuning, I used K-fold cross-validation with three folds. I defined the below parameters as grid points:
+- Maximum depth of the tree: maxDepth=[3, 5, 8, 16]
+- Fraction of the training data used for learning each decision tree: subsamplingRate: [0.7, 0.85, 1.0]  
+
+The combination of cross-validation with three folds, four values for max depth and three for subsampling rate results in 36 individual model training and evaluation cycles. The best model has an F1 score of 87.83% whit parameters of:
+ - `maxDepth=5`
+ - `subsamplingRate=0.7`
+
+This model is slightly worse than the default model. However, the difference is negligible and probably to using 3-fold cross-validation during the grid search.
+Gradient Boosted Tree model provides feature importance values indicating how useful each feature is in constructing the decision trees within the model.
 ![Churn rate by US State](https://github.com/GaborJenei/Sparkify-DSND/blob/main/eda_visuals/12_Feature%20Importance.jpg)
 ![Churn rate by US State](https://github.com/GaborJenei/Sparkify-DSND/blob/main/eda_visuals/13_Feature%20Importance_CumSum.jpg)
 
+The one-hot encoded US State features are at the end of the list, and their combined importance is less than 3%. US State features are likely could be removed from the model.
+
+The top 5 most important features account for 65% of the Importance value:
+- The number of days since registering: Similarly, as we saw in the exploratory analysis, most users churning will leave soon after registering.
+- The number of home page visits: This feature is probably related to the above one since users logging in and starting a session will be taken to the Home page.
+- The number of thumbs down: It makes sense that if people don’t like any of the songs Sparkify recommends, they will leave. We need to improve what songs are recommended as the next song.
+- The number of downgrades: paid users will downgrade and then leave the service.
+- The number of advertisements played: Free tier users leave because they can’t put up with the number of ads being played in-between songs.
+
+## Recommendtaions
+Beyond taking forward the model to make bespoke offers to customers likely to churn, I would like to make some recommendations to Sparkify, potential “quick wins” to consider:
+- __Offer new users a one-month premium (no ads) tier subscription for no charge.__ This will take all users, including churning users behind the three weeks account age, without any ads.
+- __Improve song recommendations.__ The number of thumbs down a user gives is an essential factor for predictions.
+
 #### Conclusion
 
-## Reflection
-Student adequately summarizes the end-to-end problem solution and discusses one or two particular aspects of the project they found interesting or difficult.
-Spark is a great tool to work with big data.
+Spark is a great tool to work with big data. Most analyses on a 12GB dataset only took a few minutes to compute and visualise via the cluster I’ve been using. Training the four classification models took around an hour, and the grid search process took roughly four hours. All of the above can be executed overnight on a cloud cluster, with results ready to be looked at first thing in the morning.
+With some additional budget, I believe that the grid search can be expanded to include more parameters and potentially the Logistic regression and Linear SVC models.
+
 
 ## Improvement
-To improve the model performance it would probably worth to run an exhaustive grid search on all models. Further improvement could be made by incorporating other datasets not available from the user interaction logs. It would be also an interesting discussion with business stakeholders what incentives are they proposing to offer to customers leaving, what is the cost of that against the revenue a single customer yields. This can help to establish what the Return on Investment is and help further refine the models specificity and sensitivity. I.e., what are the implications of falsely labelling a customer as churning and not identifying customers leaving.
+To improve the model performance it would probably worth to run an exhaustive grid search on all models. Further improvement could be made by incorporating other datasets not available from the user interaction logs.
+
+Another important aspect is to include stakeholders from other parts of the business in the discussion at this stage. By understanding the costs associated with an additional user on the platform and the revenue yield of a user, we can refine the acceptable level of False-positive and False-negative predictions. Specifically, we can understand and estimate what it means to incentivise users who wouldn’t leave, but the modell erroneously labelled them as likely to churn. With this information, we can fine-tune the model evaluation metrics and maximise the return on investment.
