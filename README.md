@@ -131,6 +131,15 @@ All the transformed features were combined inte a `DenseVector` column using a `
 The series of the above transformations of scaling, encoding and combining these into a dense vector were combined into a `Pipeline`.
 
 ## Modelling
+### Metrics
+This is a binary classification problem, and accuracy would be a straightforward metric for evaluating our models.
+However, accuracy on its own can be miss-leading because there's a slight imbalance in the target classes, and a dummy classifier predicting only 0 will be 77% accurate.
+A more appropriate metric is the F1 score, the harmonic mean of precision and recall.
+F1-score is sensitive to the number of miss-labelled classes, i.e.: the proportion of false positives and false negatives.
+If we incorrectly label our users, we either give out free incentives (wasting money) or miss the opportunity of attracting churning users back (losing money).
+Therefore it's crucial to minimise the proportion of miss-labelled users, so the F1 score is the most appropriate metric to use in this project.
+
+### Model Selection
 I trained `LogisticRegression`, `RandomForestClassifier`, `GBTClassifier`, and `LinearSVC` models for this binary classification problem with their default settings. To set a baseline to compare all these (and not just to each other), I also created a dummy model predicting only 0 (not churning). Evaluating the dummy model puts the metrics of the classification models into context, particularly useful when there is a class imbalance.
 
 The dummy classifier demonstrates 78% accuracy and a 0.68 F1 score on the training data. The performance on the test set 77% accuracy and a 0.66 F1 score.
@@ -143,7 +152,6 @@ The trained classifiers perform significantly better than the dummy classifier (
 ![Churn rate by US State](https://github.com/GaborJenei/Sparkify-DSND/blob/main/eda_visuals/11_ModelF1.jpg)
 
 ### Hyper parameter tuning
-
 The Gradient Boosted Tree Classifier performed the best, so I chose this for further hyper-parameter tuning. During the hyper-parameter tuning, I used K-fold cross-validation with three folds. I defined the below parameters as grid points:
 - Maximum depth of the tree: maxDepth=[3, 5, 8, 16]
 - Fraction of the training data used for learning each decision tree: subsamplingRate: [0.7, 0.85, 1.0]  
